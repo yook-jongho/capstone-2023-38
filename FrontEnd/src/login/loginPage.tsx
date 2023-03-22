@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import Button from "../components/button";
 
@@ -52,6 +53,7 @@ function Login() {
   const { email, password } = userInputs;
   const userInput = useRef<HTMLInputElement>(null);
 
+  //아이디&비밀번호 입력값 받아오기
   const onChange = useCallback(
     (e: any) => {
       const { value, name } = e.target; // 우선 e.target 에서 name 과 value 를 추출
@@ -63,6 +65,7 @@ function Login() {
     [userInputs]
   );
 
+  //로그인 실패 시, 입력칸 초기화 및 포커스
   const onRset = useCallback(() => {
     setUserLogin({
       email: "",
@@ -71,6 +74,7 @@ function Login() {
     if (userInput.current) userInput.current.focus();
   }, []);
 
+  //mock-up 데이터
   const [users, setUsers] = useState([
     {
       id: "1",
@@ -84,6 +88,7 @@ function Login() {
     },
   ]);
 
+  //아이디&비밀번호 확인
   const onCheck = useCallback(() => {
     const user = users.find(
       (user) => user.email === email && user.password === password
@@ -95,6 +100,12 @@ function Login() {
       onRset();
     }
   }, [email, onRset, password, users]);
+
+  //회원가입 페이지로 이동
+  const navigte = useNavigate();
+  const moveSignUpPage = useCallback(() => {
+    navigte("/signUp");
+  }, [navigte]);
 
   return (
     <MainBox>
@@ -113,8 +124,10 @@ function Login() {
         onChange={onChange}
         value={password}
       ></Input>
-      <Button onCheck={onCheck}>로그인</Button>
-      <span className="notuser">회원이 아니신가요?</span>
+      <Button onClick={onCheck}>로그인</Button>
+      <span className="notuser" onClick={moveSignUpPage}>
+        회원이 아니신가요?
+      </span>
     </MainBox>
   );
 }

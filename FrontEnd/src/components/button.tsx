@@ -4,7 +4,7 @@ import styled from "styled-components";
 interface Props {
   children: React.ReactNode;
   color?: string;
-  onCheck?: any;
+  onClick?: any;
 }
 const StyledButton = styled.button`
   // basic style
@@ -38,9 +38,9 @@ const StyledButton = styled.button`
   margin-top: 1rem;
 `;
 
-function Button({ onCheck, color, children, ...rest }: Props) {
+function Button({ onClick, color, children, ...rest }: Props) {
   return (
-    <StyledButton color={color} {...rest} onClick={onCheck}>
+    <StyledButton color={color} {...rest} onClick={onClick}>
       {children}
     </StyledButton>
   );
