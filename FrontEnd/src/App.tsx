@@ -1,23 +1,35 @@
 import React from "react";
-import { createGlobalStyle } from "styled-components";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Login from "./login/loginPage";
-import backImg from "./img/backImg.jpg";
-import { Route, Routes } from "react-router-dom";
 import SignUp from "./signup/signup";
-
-const GlobalStyle = createGlobalStyle`
-body {
-  background-image: url(${backImg});
-}`;
+import ImgUpload from "./imgUpload/imgUpload";
+import MyCloset from "./myPage/myCloset/myCloset";
+import MyWishList from "./myPage/myWishList";
+import Header from "./components/header";
+import BaseHeader from "./components/baseHeader";
+import MainPage from "./mainPage";
+import Recommend from "./recommend/recommendPage";
 
 function App() {
+  const location = useLocation();
+  const baseHeader =
+    location.pathname === "/login" || location.pathname === "/main";
+
+  // 경로가 / 일때 /main으로 리다이렉트
+  if (location.pathname === "/") {
+    return <Navigate to="/main" replace />;
+  }
+
   return (
     <>
-      <GlobalStyle />
-      {/* <Login></Login> */}
+      {baseHeader ? <BaseHeader /> : <Header />}
       <Routes>
-        <Route path="/" Component={Login} />
+        <Route path="/main" Component={MainPage}></Route>
+        <Route path="/login" Component={Login} />
         <Route path="/signUp" Component={SignUp} />
+        <Route path="/imgUpload" Component={Recommend} />
+        <Route path="/myCloset" Component={MyCloset} />
+        <Route path="/myWishList" Component={MyWishList} />
       </Routes>
     </>
   );
