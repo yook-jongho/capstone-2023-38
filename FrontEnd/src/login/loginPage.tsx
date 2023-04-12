@@ -2,36 +2,26 @@ import React, { useCallback, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import Button from "../components/button";
+import MainBox from "../components/mainBox";
+import GoogleLoginButton from "../google";
 
-const MainBox = styled.div`
-  width: 30%;
-  height: 70%;
+const Loginspan = styled.span`
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+`;
 
-  position: relative;
-  border-radius: 1%;
-  background-color: rgba(0, 0, 0, 0.8);
+const Notuser = styled.span`
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+`;
 
-  margin: 0 auto;
-  margin-top: 4rem;
-  padding: 5rem;
-
-  display: flex;
-  flex-direction: column;
-
-  .login {
-    color: #fff;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .button {
-    margin-top: 2rem;
-  }
-
-  .notuser {
-    margin-top: 1rem;
-    color: #fff;
-  }
+const Googlebtn = styled.div`
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const Input = styled.input`
@@ -109,7 +99,7 @@ function Login() {
 
   return (
     <MainBox>
-      <span className="login">로그인</span>
+      <Loginspan>로그인</Loginspan>
       <Input
         name="email"
         placeholder="이메일 주소"
@@ -125,9 +115,11 @@ function Login() {
         value={password}
       ></Input>
       <Button onClick={onCheck}>로그인</Button>
-      <span className="notuser" onClick={moveSignUpPage}>
-        회원이 아니신가요?
-      </span>
+
+      <Notuser onClick={moveSignUpPage}>회원이 아니신가요?</Notuser>
+      <Googlebtn>
+        <GoogleLoginButton></GoogleLoginButton>
+      </Googlebtn>
     </MainBox>
   );
 }
