@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+/* 폰트 */
+@font-face {
+  font-family: "NanumSquareRound";
+  src: url("./fonts/NanumSquareRoundOTFR.otf");
+}

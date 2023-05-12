@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Login from "./login/loginPage";
 import SignUp from "./signup/signup";
@@ -9,6 +10,7 @@ import Header from "./components/header";
 import BaseHeader from "./components/baseHeader";
 import MainPage from "./mainPage";
 import Recommend from "./recommend/recommendPage";
+import FeedPage from "./feedPage/feedPage";
 
 function App() {
   const location = useLocation();
@@ -30,6 +32,7 @@ function App() {
         <Route path="/imgUpload" Component={Recommend} />
         <Route path="/myCloset" Component={MyCloset} />
         <Route path="/myWishList" Component={MyWishList} />
+        <Route path="/FeedList" Component={FeedPage} />
       </Routes>
     </>
   );
