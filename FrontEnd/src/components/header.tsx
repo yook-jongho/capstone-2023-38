@@ -39,11 +39,13 @@ const Navigationbar = styled.div`
 
   .menu {
     margin: 2rem auto 2rem auto;
-    font-size: 1.3rem;
-    font-weight: bold;
     color: black;
     cursor: pointer;
     transition: font-size 0.3s ease-in-out;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: "NanumSquareRound";
+    font-style: normal;
 
     @media screen and (min-width: 915px) {
       &:hover {
@@ -79,6 +81,8 @@ const Navigationbar = styled.div`
       margin: 0rem 0.5rem 0 0.5rem;
       font-size: 0.6rem;
       padding-bottom: 5px;
+      font-family: "NanumSquareRound";
+      font-style: normal;
     }
   }
 `;
@@ -87,7 +91,7 @@ function Header() {
   const navigate = useNavigate();
 
   const moveMainPage = useCallback(() => {
-    navigate("/myCloset");
+    navigate("/main");
   }, [navigate]);
 
   const moveImgUpload = useCallback(() => {
@@ -102,8 +106,8 @@ function Header() {
     navigate("/myWishList");
   }, [navigate]);
 
-  const moveHotCody = useCallback(() => {
-    navigate("/hotCody");
+  const moveFeedList = useCallback(() => {
+    navigate("/FeedList");
   }, [navigate]);
 
   return (
@@ -118,7 +122,7 @@ function Header() {
       <span className="menu" onClick={moveMyWishList}>
         나의 위시리스트
       </span>
-      <span className="menu" onClick={moveHotCody}>
+      <span className="menu" onClick={moveFeedList}>
         스타일
       </span>
     </Navigationbar>

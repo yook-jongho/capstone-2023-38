@@ -3,12 +3,17 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import Button from "../components/button";
 import MainBox from "../components/mainBox";
+import useAsync, { createMyCloth } from "../customhook/useAsync";
 
 interface ImageSrc {
   image: string;
   name: string;
+  file: any;
 }
 
+interface Props {
+  category: string;
+}
 const ButtonWrapper = styled.div`
   display: ${(props: { visible: boolean }) =>
     props.visible ? "contents" : "none"};
@@ -36,7 +41,7 @@ const FileUpload = styled.input`
   display: none;
 `;
 
-function ImgUpload() {
+function ImgUpload({ category }: Props) {
   //이미지 소스 상태관리. 초기 상태를 빈 배열로 저장
   const [imageSrc, setImageSrc]: any = useState<ImageSrc[]>([]);
 
@@ -49,10 +54,6 @@ function ImgUpload() {
     }
     fileupload.current.click();
   }, []);
-
-  useEffect(() => {
-    console.log("현재 이미지 소스\n", imageSrc);
-  }, [imageSrc]);
 
   //이미지 선택하기
   const handleChange = useCallback(
@@ -75,28 +76,61 @@ function ImgUpload() {
         const currentImageName = fileList[i].name;
         if (imgUrlList.find((img) => img.name === currentImageName)) continue;
 
-        const currentImageUrl = URL.createObjectURL(fileList[i]);
+        const currentImage = URL.createObjectURL(fileList[i]);
+        // console.log(currentImage);
+        // console.log(fileList[i]);
+
         imgUrlList.push({
-          image: currentImageUrl,
+          image: currentImage,
           name: currentImageName,
+          file: fileList[i],
         });
       }
       setImageSrc(imgUrlList);
-      console.log(imageSrc);
+      // console.log(imageSrc);
     },
     [imageSrc]
   );
 
-  const imageUpload = useCallback(() => {
-    try {
-      axios.post("http://192.168.4.30:8080/api/uploadWishlist/", {
-        userId: "testuser",
-        imageUrls: imageSrc,
-      });
-    } catch (e) {
-      console.log(e);
+  console.log(imageSrc);
+  //todo: 코드 최적화
+  // const [state, fetchData] = useAsync(
+  //   () => createMyCloth(imageSrc, category, "kookmin123"),
+  //   false
+  // );
+
+  // const { loading, error } = state;
+  // const imageUpload = useCallback(() => {
+  //   if (loading) return <div>loading...</div>;
+  //   if (error) return <div>error message {error.message}</div>;
+
+  //   fetchData();
+  // }, []);
+
+  const handleUpload = async () => {
+    const formData = new FormData();
+
+    for (let i = 0; i < imageSrc.length; i++) {
+      formData.append("files", imageSrc[i].file);
     }
-  }, [imageSrc]);
+    // formData.append("userid", "kookmin123");
+
+    try {
+      await axios.post(
+        "http://192.168.200.198:8080/api/uploadTempCloset_TOP?userid=kookmin123",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      alert("이미지 업로드가 완료되었습니다.");
+    } catch (error) {
+      console.error(error);
+      alert("이미지 업로드에 실패했습니다.");
+    }
+  };
 
   const handleDeleteImage = useCallback(
     (name: any) => {
@@ -107,7 +141,8 @@ function ImgUpload() {
   );
 
   return (
-    <MainBox width="40%">
+    <div>
+      {" "}
       <FileUpload
         type="file"
         accept="image/*"
@@ -117,20 +152,24 @@ function ImgUpload() {
         onChange={handleChange}
       />
       <ButtonWrapper visible={imageSrc.length > 0}>
-        <Button onClick={imageUpload}>사진 업로드</Button>
+        <Button onClick={handleUpload}>사진 업로드</Button>
       </ButtonWrapper>
       <Button onClick={onClick}>이미지 선택하기</Button>
-
       {/* 저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
       <ImgBox>
         {imageSrc.map(({ image, name }: any, index: number) => (
           <div className="img-div" key={index}>
             <img className="img" src={image} alt={`${image}-${name}`} />
-            <Button onClick={() => handleDeleteImage(name)}>X</Button>
+            <Button
+              fontcolor="palevioletred"
+              onClick={() => handleDeleteImage(name)}
+            >
+              X
+            </Button>
           </div>
         ))}
       </ImgBox>
-    </MainBox>
+    </div>
   );
 }
 

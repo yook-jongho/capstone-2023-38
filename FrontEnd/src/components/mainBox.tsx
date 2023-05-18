@@ -3,11 +3,12 @@ import styled from "styled-components";
 
 interface Props {
   children: React.ReactNode;
+  onClick?: any;
   width?: string;
 }
 
 const MainContainer = styled.div<Props>`
-  width: ${(props) => props.width || "30%"};
+  width: ${(props) => props.width || "20%"};
   height: 70%;
 
   position: relative;
@@ -20,10 +21,11 @@ const MainContainer = styled.div<Props>`
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
-function MainBox({ children }: Props) {
-  return <MainContainer>{children}</MainContainer>;
+function MainBox({ children, width, onClick }: Props) {
+  return <MainContainer onClick={onClick}>{children}</MainContainer>;
 }
 
 export default MainBox;

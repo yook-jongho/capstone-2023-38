@@ -6,6 +6,7 @@ import exampleImg1 from "../src/img/exampleImg/codymap1.jpeg";
 import exampleImg2 from "../src/img/exampleImg/codymap2.jpeg";
 import exampleImg3 from "../src/img/exampleImg/codymap3.jpeg";
 import GoogleLoginButton from "./google";
+import Button from "./components/button";
 
 const FadeIn = keyframes`
   from {
@@ -74,6 +75,11 @@ const Googlebtn = styled.div`
 `;
 
 function MainPage() {
+  const handleLogin = () => {
+    window.location.href =
+      "https://5f6c-121-160-177-138.ngrok-free.app/oauth2/authorization/google"; // 네이버 URL
+  };
+
   const exampleImg = [
     { id: 1, imgsrc: exampleImg1 },
     { id: 2, imgsrc: exampleImg2 },
@@ -99,8 +105,9 @@ function MainPage() {
         <ImageSlider images={exampleImg}></ImageSlider>
       </SecondContent>
       <Googlebtn>
-        <span>에코 시작하기</span>
-        <GoogleLoginButton></GoogleLoginButton>
+        <Button fontcolor={"skyblue"} onClick={handleLogin}>
+          에코 시작하기
+        </Button>
       </Googlebtn>
     </MainWrapper>
   );

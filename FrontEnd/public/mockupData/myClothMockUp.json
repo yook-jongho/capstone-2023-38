@@ -1,0 +1,45 @@
+{
+  "userId": "kookmin123",
+  "images": {
+    "top": [
+      {
+        "id": 1,
+        "imgsrc": "https://image.msscdn.net/images/goods_img/20220125/2326935/2326935_11_500.jpg"
+      },
+      {
+        "id": 2,
+        "imgsrc": "https://image.msscdn.net/images/goods_img/20220906/2775713/2775713_1_500.jpg"
+      }
+    ],
+    "bottom": [
+      {
+        "id": 1,
+        "imgsrc": "https://image.msscdn.net/images/goods_img/20200818/1551840/1551840_1_125.jpg"
+      },
+      {
+        "id": 2,
+        "imgsrc": "https://image.msscdn.net/images/goods_img/20200818/1551840/1551840_1_125.jpg"
+      }
+    ],
+    "outer": [
+      {
+        "id": 1,
+        "imgsrc": "https://image.msscdn.net/images/goods_img/20210813/2064545/2064545_16746126780375_500.jpg"
+      },
+      {
+        "id": 2,
+        "imgsrc": "https://image.msscdn.net/images/goods_img/20210813/2064545/2064545_16746126780375_500.jpg"
+      }
+    ],
+    "shoes": [
+      {
+        "id": 1,
+        "imgsrc": "https://image.msscdn.net/images/goods_img/20190826/1128656/1128656_1_125.jpg"
+      },
+      {
+        "id": 2,
+        "imgsrc": "https://image.msscdn.net/images/goods_img/20190826/1128656/1128656_1_125.jpg"
+      }
+    ]
+  }
+}

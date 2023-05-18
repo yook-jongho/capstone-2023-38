@@ -3,32 +3,30 @@ import styled from "styled-components";
 
 interface Props {
   children: React.ReactNode;
-  color?: string;
+  fontcolor?: string;
+  backcolor?: string;
   onClick?: any;
 }
-const StyledButton = styled.button`
-  // basic style
-  display: inline-block;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  font-weight: bold;
+
+const StyledButton = styled.button<Props>`
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
   cursor: pointer;
-  padding-left: 1rem;
-  padding-right: 1rem;
 
-  //size
-  height: 2.25rem;
-  font-size: 1rem;
+  /* Color the border and text with theme.main */
+  color: ${(props) => props.fontcolor || "black"};
+  border: 2px solid ${(props) => props.fontcolor || "black"};
+  background: #ffffff;
 
-  //color
-  background: ${(props) => props.color || "#228be6"};
   &:hover {
-    background: #339af0;
+    background: ${(props) => props.fontcolor || "black"};
+    color: #ffffff;
   }
   &:active {
-    background: #1c7ed6;
+    color: ${(props) => props.fontcolor || "black"};
+    background: #ffffff;
   }
 
   //etc
@@ -38,9 +36,9 @@ const StyledButton = styled.button`
   margin-top: 1rem;
 `;
 
-function Button({ onClick, color, children, ...rest }: Props) {
+function Button({ onClick, children, ...rest }: Props) {
   return (
-    <StyledButton color={color} {...rest} onClick={onClick}>
+    <StyledButton {...rest} onClick={onClick}>
       {children}
     </StyledButton>
   );

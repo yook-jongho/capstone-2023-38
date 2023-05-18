@@ -20,7 +20,8 @@ const DialogBox = styled.div`
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  width: 50%;
+
+  width: 60%;
   height: 50%
   max-width: 80%;
   max-height: 80%;
@@ -31,11 +32,11 @@ const Title = styled.h2`
   margin-top: 0;
 `;
 
-function Dialog({ children, btnContext, title, ...rest }: any) {
+function Dialog({ children, text, title, ...rest }: any) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>{btnContext}</Button>
+      <Button onClick={() => setIsOpen(true)}>{text}</Button>
       {isOpen && (
         <>
           <Overlay onClick={() => setIsOpen(false)} />
@@ -43,7 +44,9 @@ function Dialog({ children, btnContext, title, ...rest }: any) {
             <Title>{title}</Title>
             {children}
             {/* <ImgUpload></ImgUpload> */}
-            <Button onClick={() => setIsOpen(false)}>닫기</Button>
+            <Button fontcolor="palevioletred" onClick={() => setIsOpen(false)}>
+              닫기
+            </Button>
           </DialogBox>
         </>
       )}

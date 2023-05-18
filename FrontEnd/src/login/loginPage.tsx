@@ -85,6 +85,7 @@ function Login() {
     );
     if (user) {
       console.log("로그인 성공");
+      moveMyClosetPage();
     } else {
       alert("이메일 또는 비밀번호가 잘못되었습니다.");
       onRset();
@@ -93,9 +94,12 @@ function Login() {
 
   //회원가입 페이지로 이동
   const navigte = useNavigate();
-  const moveSignUpPage = useCallback(() => {
+  const moveSignUpPage = () => {
     navigte("/signUp");
-  }, [navigte]);
+  };
+  const moveMyClosetPage = () => {
+    navigte("/myCloset");
+  };
 
   return (
     <MainBox>
