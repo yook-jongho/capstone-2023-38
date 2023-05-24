@@ -42,7 +42,6 @@ const ImageSlider = ({ images }: Props) => {
     false
   );
   const { loading, data, error } = state;
-  // console.log(images);
 
   useEffect(() => {
     setImageList(images); // images가 변경될 때마다 imageList를 업데이트
