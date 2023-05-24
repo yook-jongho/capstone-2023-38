@@ -1,19 +1,13 @@
-[
-  {
-    "id": "string",
-    "images": [
-      {
-        "number": 1,
-        "imgsrc": "https://cepstone-feedpage.s3.ap-northeast-2.amazonaws.com/17619962-0512-4c2f-9aa6-72b1c40f5ade_youtube-667451__340.png"
-      },
-      {
-        "number": 2,
-        "imgsrc": "https://cepstone-feedpage.s3.ap-northeast-2.amazonaws.com/321e81e9-742e-4b7c-8746-ee0cf15f4518_youtube-667451__340.png"
-      },
-      {
-        "number": 3,
-        "imgsrc": "https://cepstone-feedpage.s3.ap-northeast-2.amazonaws.com/4d119528-ae98-4333-8c1b-f82927dee04b_youtube-667451__340.png"
-      }
-    ]
-  }
-]
+{
+  "id": "user1",
+  "images": [
+    {
+      "number": 1,
+      "imgsrc": "https://image.msscdn.net/images/codimap/detail/22974/detail_22974_1_500.jpg?202305231805"
+    },
+    {
+      "number": 2,
+      "imgsrc": "https://image.msscdn.net/images/codimap/detail/14563/detail_14563_1_500.jpg?202305232105"
+    }
+  ]
+}

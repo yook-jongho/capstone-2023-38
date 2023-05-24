@@ -1,27 +1,21 @@
-[
-  {
-    "id": "kookmin123",
-    "images": [
-      {
-        "number": 1,
-        "imgsrc": "https://cepstone-wishlist.s3.ap-northeast-2.amazonaws.com/3756e620-050e-46e6-b372-145a385aa3e3_link-6931554__340.png"
-      },
-      {
-        "number": 2,
-        "imgsrc": "https://cepstone-wishlist.s3.ap-northeast-2.amazonaws.com/4db6cf16-c348-4cf3-a411-ca06ea20c621_bookmarks-5243253__340.jpg"
-      },
-      {
-        "number": 3,
-        "imgsrc": "https://cepstone-wishlist.s3.ap-northeast-2.amazonaws.com/7aba91b0-b25a-4d7c-85c5-396805acef2c_link-6931554__340.png"
-      },
-      {
-        "number": 4,
-        "imgsrc": "https://cepstone-wishlist.s3.ap-northeast-2.amazonaws.com/c9813bf0-b1f5-41c1-8efa-1b830bbe0b72_domain-names-1772242__340.jpg"
-      },
-      {
-        "number": 5,
-        "imgsrc": "https://cepstone-wishlist.s3.ap-northeast-2.amazonaws.com/e6650236-85c7-4252-a559-85922c2c2714_youtube-667451__340.png"
-      }
-    ]
-  }
-]
+{
+  "id": "kookmin123",
+  "images": [
+    {
+      "number": 1,
+      "imgsrc": "https://image.msscdn.net/images/codimap/detail/22974/detail_22974_1_500.jpg?202305231805"
+    },
+    {
+      "number": 2,
+      "imgsrc": "https://image.msscdn.net/images/codimap/detail/14563/detail_14563_1_500.jpg?202305232105"
+    },
+    {
+      "number": 3,
+      "imgsrc": "https://image.msscdn.net/images/codimap/detail/22962/detail_22962_1_500.jpg?202305232105"
+    },
+    {
+      "number": 4,
+      "imgsrc": "https://image.msscdn.net/images/codimap/detail/3179/detail_3179_1_500.jpg?202305232105"
+    }
+  ]
+}
