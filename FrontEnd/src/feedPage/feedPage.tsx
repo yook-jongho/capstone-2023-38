@@ -20,8 +20,8 @@ const CodyContainer = styled.div`
   padding: 2rem;
 
   .img {
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 300px;
+    max-height: 300px;
     border-radius: 0.2rem;
     // box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   }
@@ -31,7 +31,8 @@ const CodyContainer = styled.div`
   }
 `;
 function FeedPage() {
-  const [state, fetchData] = useAsync(() => getFeedPage(), true);
+  // const [state, fetchData] = useAsync(() => getFeedPage(), true);
+  const [state, fetchData] = useAsync(() => getTest("codyfeed"), true);
   const { loading, data, error } = state;
 
   const renderFeedList = () => {
@@ -45,7 +46,7 @@ function FeedPage() {
       <>
         {data.map((data: any) => (
           <CodyContainer key={data.userid}>
-            <img className="img" src={data.imageUrl}></img>
+            <img className="img" src={data.imgsrc}></img>
             <div>
               <span>{data.userid}</span>
               <span>

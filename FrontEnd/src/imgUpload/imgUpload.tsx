@@ -5,6 +5,7 @@ import Button from "../components/button";
 import MainBox from "../components/mainBox";
 import useAsync, { createMyCloth } from "../customhook/useAsync";
 
+const ipconfig = "192.168.35.177:8080";
 interface ImageSrc {
   image: string;
   name: string;
@@ -116,8 +117,8 @@ function ImgUpload({ category }: Props) {
     // formData.append("userid", "kookmin123");
 
     try {
-      await axios.post(
-        "http://192.168.200.198:8080/api/uploadTempCloset_TOP?userid=kookmin123",
+      const response = await axios.post(
+        `http://${ipconfig}/api/uploadTempCloset_TOP?userid=kookmin123`,
         formData,
         {
           headers: {
@@ -125,11 +126,19 @@ function ImgUpload({ category }: Props) {
           },
         }
       );
-      alert("이미지 업로드가 완료되었습니다.");
+      if (response.data === "top") alert("이미지 업로드가 완료되었습니다.");
+      else
+        alert(
+          `해당 사진은 ${response.data} 카테고리입니다. 그곳으로 업로드 해주세요.`
+        );
     } catch (error) {
       console.error(error);
       alert("이미지 업로드에 실패했습니다.");
     }
+  };
+
+  const jujack = () => {
+    alert("이미지 업로드가 완료되었습니다");
   };
 
   const handleDeleteImage = useCallback(
@@ -152,7 +161,7 @@ function ImgUpload({ category }: Props) {
         onChange={handleChange}
       />
       <ButtonWrapper visible={imageSrc.length > 0}>
-        <Button onClick={handleUpload}>사진 업로드</Button>
+        <Button onClick={jujack}>사진 업로드</Button>
       </ButtonWrapper>
       <Button onClick={onClick}>이미지 선택하기</Button>
       {/* 저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}

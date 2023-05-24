@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "../components/button";
 
 interface imgList {
   id: number;
   imgsrc: string;
+  path: string;
 }
 
 interface Props {
   data: any;
-  //   onSelectListChange?: (selectlist: imgList[]) => void; // 콜백 함수 타입 정의
+  state: imgList[];
+  category: string;
+  onSelectListChange: (selectlist: imgList[]) => void; // 콜백 함수 타입 정의
 }
 
 const Container = styled.div`
@@ -27,44 +30,22 @@ const ImgContainer = styled.div`
   padding: 1rem;
 
   .img {
-    width: 130px;
-    height: 130px;
+    width: 200px;
+    height: 200px;
     cursor: pointer;
   }
 `;
-const SelectList = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-top: 1px solid black;
 
-  span {
-    margin: 1rem;
-    font-family: "NanumSquareRound";
-    font-style: normal;
-  }
-
-  .selectImg {
-    display: flex;
-    flex-direction: row;
-    maring-top: 1rem;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center; /* 이미지를 가운데 정렬하는 속성 추가 */
-  }
-
-  img {
-    width: 130px;
-    heigth: 130px;
-    margin: 1rem;
-  }
-`;
-
-function ViewCloth({ data }: any) {
+function ViewCloth({ data, onSelectListChange, state, category }: Props) {
   const [selectlist, setSelectList] = useState<imgList[]>([]);
 
   const [imglist, setImageList] = useState<imgList[]>(data);
   const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    setImageList(data);
+    onSelectListChange(selectlist); // images가 변경될 때마다 imageList를 업데이트
+  }, [data]);
 
   const prevImg = () => {
     setIdx(idx === 0 ? imglist.length - 1 : idx - 1);
@@ -73,27 +54,27 @@ function ViewCloth({ data }: any) {
     setIdx(idx === imglist.length - 1 ? 0 : idx + 1);
   };
 
-  //   const handleSelect = (image: string) => {
-  //     let templist = [...selectlist];
+  const handleSelect = (image: imgList) => {
+    // console.log(image);
+    let templist = [...selectlist];
 
-  //     //중복이미지 체크
-  //     for (let i = 0; i < templist.length; i++) {
-  //       if (templist[i].imgsrc === image) {
-  //         return alert("중복된 이미지 입니다.");
-  //       }
-  //     }
-  //     //이미지 추가로직 구현
-  //     templist.push({ id: templist.length + 1, imgsrc: image });
+    //중복이미지 체크
+    for (let i = 0; i < templist.length; i++) {
+      if (templist[i].imgsrc === image.imgsrc) {
+        return alert("중복된 이미지 입니다.");
+      }
+    }
+    //이미지 추가로직 구현
+    templist.push({
+      id: templist.length + 1,
+      imgsrc: image.imgsrc,
+      path: image.path,
+    });
 
-  //     setSelectList(templist);
-  //     // onSelectListChange(templist);
-  //   };
+    setSelectList(templist);
+    onSelectListChange(templist);
+  };
 
-  //   const deleteImg = (imgsrc: string) => {
-  //     if (window.confirm("삭제하시겠습니까?")) {
-  //       return setSelectList(selectlist.filter((img) => img.imgsrc !== imgsrc));
-  //     }
-  //   };
   return (
     <>
       <Container>
@@ -104,7 +85,7 @@ function ViewCloth({ data }: any) {
           <img
             className="img"
             src={imglist[idx].imgsrc}
-            // onClick={() => handleSelect(imglist[idx].imgsrc)}
+            onClick={() => handleSelect(imglist[idx])}
           ></img>
           <Button onClick={nextImg} fontcolor="skyblue">
             &gt;
