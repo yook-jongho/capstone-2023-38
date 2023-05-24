@@ -13,29 +13,54 @@ type State<T> = {
 };
 
 const jaemin = "192.168.200.198:8080";
-const apiIp = "14.6.121.141:8080";
+const moongi = "192.168.96.28:8080";
 const test = "78f5-120-142-36-198.ngrok-free.app";
 const Upload = "codyFeedUpload.json";
 const myCloset = "myClothMockUp.json";
+const wish = "myWishList.json";
+
+const getMyCloset = "getMycloset";
+const getWishlist = "getWishlist";
+const getFeedpage = "getFeedpage";
+
+export async function getData(endpoint: string, id?: string) {
+  let url = "";
+  switch (endpoint) {
+    case "getMycloset":
+      url = `http://${moongi}/api/getMycloset/${id}`;
+      break;
+    case "getWishlist":
+      url = `http://${moongi}/api/getWishlist/${id}`;
+      break;
+    case "getFeedpage":
+      url = `http://${jaemin}/api/getFeedpage/uploadTime`;
+      break;
+    default:
+      throw new Error("Invalid endpoint");
+  }
+
+  const response = await fetch(url, { method: "GET" });
+  const data = await response.json();
+  return data;
+}
 
 export async function getTest(funct: string) {
   let test;
   if (funct === "mycloset") test = myCloset;
   if (funct === "codyfeed") test = Upload;
+  if (funct === "wish") test = wish;
+  if (funct === "feed") test = "myFeedList.json";
+  if (funct === "like") test = "myLikeList.json";
   const response = await fetch(`/mockupData/${test}`);
   const data = await response.json();
   return data;
 }
 
-export async function getTesting() {
-  const response = await fetch(`http://192.168.35.177:8080/testing`);
-  const data = await response.json();
-  return data;
-}
 // 내 옷장 불러오기
 export async function getUsers(id: string) {
-  const response = await fetch(`http://${jaemin}/api/getMycloset2/${id}`);
+  const response = await fetch(`http://${moongi}/api/getMycloset/${id}`);
   const data = await response.json();
+  console.log(data);
   return data;
 }
 
@@ -88,6 +113,23 @@ function generateBoundary(): string {
   return boundary;
 }
 
+//추천받기
+export async function RecommendPost(postData: any) {
+  console.log(postData); // 비어있음 그래서 데이터가 아무것도 안담겨서
+  const response = await fetch(`http://${jaemin}/api/uploadRecStart`, {
+    method: "POST",
+    body: postData,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => {
+    if (res.ok) alert("새로운 옷이 추가되었습니다.");
+    else alert("이미지 업로드 실패");
+  });
+  const data = await response;
+  return data;
+}
+
 // 옷삭제
 export async function deleteImg(img: string) {
   const response = await fetch(
@@ -105,7 +147,7 @@ export async function deleteImg(img: string) {
 }
 
 export async function getWishList(id: string) {
-  const response = await fetch(`http://${apiIp}/api/getWishlist/${id}`, {
+  const response = await fetch(`http://${moongi}/api/getWishlist/${id}`, {
     method: "GET",
   });
   const data = await response.json();
