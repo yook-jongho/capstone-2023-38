@@ -76,8 +76,7 @@ const Googlebtn = styled.div`
 
 function MainPage() {
   const handleLogin = () => {
-    window.location.href =
-      "https://5f6c-121-160-177-138.ngrok-free.app/oauth2/authorization/google"; // 네이버 URL
+    window.location.href = "http://localhost:3000/myCloset"; // 네이버 URL
   };
 
   const exampleImg = [
@@ -105,9 +104,11 @@ function MainPage() {
         <ImageSlider images={exampleImg}></ImageSlider>
       </SecondContent>
       <Googlebtn>
-        <Button fontcolor={"skyblue"} onClick={handleLogin}>
+        {/* <Button fontcolor={"skyblue"} onClick={handleLogin}>
           에코 시작하기
-        </Button>
+        </Button> */}
+        <span>에코 시작하기</span>
+        <GoogleLoginButton></GoogleLoginButton>
       </Googlebtn>
     </MainWrapper>
   );
