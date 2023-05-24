@@ -4,7 +4,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Login from "./login/loginPage";
 import SignUp from "./signup/signup";
 import ImgUpload from "./imgUpload/imgUpload";
-import MyCloset from "./myPage/myCloset/myCloset";
+import MyCloset from "./myCloset/myCloset";
 import MyWishList from "./myPage/myWishList";
 import Header from "./components/header";
 import BaseHeader from "./components/baseHeader";
